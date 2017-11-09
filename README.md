@@ -6,5 +6,5 @@
 #AKENA GIBBS HERBERT  16/U/3183/EVE
 #TAMALE JOEL        16/U/11830/PS
 
-#Brief description
+#Brief description:
 The proram is for banking system tht allows interaction between customers,tellers,banks and the accounts
