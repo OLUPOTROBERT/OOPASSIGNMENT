@@ -115,7 +115,7 @@ class Customer(Teller):
         self.Loan.ApplyForLoan(amount)
         
         
-    def RequestCard():
+    def RequestCard(self):
         print( "Your card is being processed")
 
 class Account(Customer):
@@ -259,7 +259,6 @@ class Savings(Account):
 
         
 
-        
 
 bank1=Bank(1122,'Stanbic','Makerere')
 bank2=Bank(1023,'centenary','Nakawa')
