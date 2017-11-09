@@ -1,12 +1,9 @@
 import time
 class Bank(object):
-    def __init__(self, BankId, Name, Location):
-        self.BankId = BankId
-        self.Name = Name
-        self.Location = Location
-        pass
-
-
+    def __init__(self, BankId, BankName, Location):
+        self.BankId = int(BankId)
+        self.BankName = str(BankName)
+        self.Location = str(Location)
 
 class Teller(Bank):
     teller_balance = 0  # The nitial amount collected by teller 
@@ -14,8 +11,8 @@ class Teller(Bank):
     account_dictionary = {}
     Records=[]      #List stores transaction time and date by teller
 
-    def __init__(self, teller_id, teller_name, BankId, Name, Location):
-        super().__init__(BankId, Name, Location)
+    def __init__(self, teller_id, teller_name, BankId, BankName, Location):
+        super().__init__(BankId, BankName, Location)
         #assert teller_id == int and teller_name == str
         self.Teller_id = teller_id
         self.Teller_name = teller_name
@@ -56,7 +53,7 @@ class Teller(Bank):
         else:
             print("the customer does not qualify for the given loan ")
 
-    def ProvideInfo(self):  # exception
+    def ProvideInfo(self):
         response = int(input("Enter:\n1. Account opening info\n2. loan info\n3. Promotions"))
         if response is 1:
             print("Account opening requirements\n3 passport photos\nNational ID\n 50,000/= min deposit")
@@ -65,7 +62,7 @@ class Teller(Bank):
         if response is 3:
             print("We currently have no running promotions ")
 
-    def IssueCard(self):  # except
+    def IssueCard(self):
         response = int(input("enter time elapsed(in weeks) since card request"))
         if response >= 2:
             print("kindly pick your card from the accounts section ")
@@ -74,18 +71,20 @@ class Teller(Bank):
             print("The card will be available in", x, "weeks")
 
 
-class Customer(Bank):
+class Customer(Teller):
     Records = [] # List stores transaction time and date by customer
-    def __init__(self,Id,CustomerName,Address,PhoneNo,AccountNo,BankId, Name, Location):
-        super().__init__(BankId, Name, Location)
-        self.CustomerName=CustomerName
-        self.Address=Address
-        self.PhoneNo=int(PhoneNo)
-        self.AccountNo=int(AccountNo)
+    def __init__(self, customer_id, CustomerName, Address, PhoneNo,
+                 AccountNo, BankId,BankName, Location,teller_id="unknown", teller_name="unknown"):
+        super().__init__(teller_id, teller_name, BankId, BankName, Location)
+        self.CustomerName = str(CustomerName)
+        self.Address = str(Address)
+        self.PhoneNo = int(PhoneNo)
+        self.AccountNo = int(AccountNo)
         self.balance=0
 
     def GeneralInquiry(self):
-        print('Name:', self.Name,'\n Address: ',self.Address,'\n PhoneNo: ',self.PhoneNo,'\n AccountNo: ',self.AccountNo,'\n Accountbal: ',self.balance)
+        print('Name:', self.CustomerName
+              ,'\n Address: ',self.Address,'\n PhoneNo: ',self.PhoneNo,'\n AccountNo: ',self.AccountNo,'\n Accountbal: ',self.balance)
 
     def DepositMoney(self,amount):
         self.amount=amount
